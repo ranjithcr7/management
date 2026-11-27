@@ -6,12 +6,9 @@ A demo website for managing college fees and student marks, with separate logins
 
 ## Open the website
 
-**On GitHub Pages**
+**Online:** [https://ranjithcr7.github.io/management/](https://ranjithcr7.github.io/management/)
 
-1. Open this repository's **Settings → Pages**.
-2. Under **Build and deployment**, set **Source** to *Deploy from a branch*.
-3. Choose branch **main**, folder **/ (root)**, and press **Save**.
-4. After a minute or two, open `https://<your-username>.github.io/<repository-name>/`.
+The workflow in `.github/workflows/pages.yml` publishes the site on every push to `main`. In **Settings → Pages**, **Source** must be set to *GitHub Actions*.
 
 **On your computer**
 
@@ -100,6 +97,7 @@ Fee risk and prediction are simple formulas, not machine learning.
 ```
 .
 ├── index.html       The whole website
+├── .github/         GitHub Pages deployment workflow
 ├── screenshots/     Images used in this README
 ├── .nojekyll        Tells GitHub Pages to serve files as they are
 └── README.md
