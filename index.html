@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>img{max-width:100%}body{margin:0}</style>
+<title>College Fees and Marks</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: split login card; icon sidebar, white top bar, card grid. Single light theme from the user's reference. */
+:root{color-scheme:light;--navy:#0a2a6b;--navy2:#123c94;--blue:#1766e8;--soft:#eaf1fe;--bg:#f4f7fd;--ink:#101b36;--mut:#5b6784;--line:#e1e8f5;--white:#fff;--green:#128a45;--greenbg:#e0f6e8;--orange:#b86200;--orangebg:#fff0d9;--red:#c42b22;--redbg:#fde5e3;--teal:#0f9fa8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:13px Poppins,system-ui,sans-serif}
+button,input,select{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid #f5ad2e;outline-offset:2px}
+svg{display:block}
+h1,h2,h3,p{margin:0}h2{font-size:18px;color:var(--navy)}h3{font-size:14px}
+.mut{color:var(--mut)}
+.btn{min-height:36px;padding:0 16px;border-radius:7px;border:1px solid var(--blue);background:var(--blue);color:var(--white);font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn.soft{background:var(--soft);color:var(--navy2);border-color:#c4d6f8}
+.btn.ghost{background:var(--white);color:var(--ink);border-color:var(--line)}
+.btn.teal{background:#0d7f87;border-color:#0d7f87}.btn.green{background:var(--green);border-color:var(--green)}
+.btn.red{background:var(--redbg);color:#a51f17;border-color:#f6c4c0}
+.btn.sm{min-height:30px;padding:0 12px;font-size:12px}
+.link{background:none;border:0;color:var(--blue);padding:4px;font-weight:500}
+input,select{height:40px;border:1px solid #c5d1e8;border-radius:7px;background:var(--white);padding:0 12px;min-width:0}
+label{display:flex;flex-direction:column;gap:5px;font-weight:500}
+.login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px 16px;background:linear-gradient(160deg,#dfeaff,#f4f7fd)}
+.lcard{width:100%;max-width:980px;display:flex;flex-wrap:wrap;background:var(--white);border:3px solid var(--navy);border-radius:16px;overflow:hidden}
+.campus{flex:1 1 420px;min-height:260px;display:flex}.campus svg{width:100%;height:100%}
+.lform{flex:1 1 360px;padding:40px 36px;display:flex;flex-direction:column;gap:14px}
+.lform h1{font-size:28px;line-height:1.2;text-align:center;color:var(--navy)}
+.center{align-self:center;text-align:center}
+.roles{display:flex;gap:8px;flex-wrap:wrap}.roles .btn{flex:1}
+.app{display:flex;min-height:100vh}
+.side{flex:0 0 112px;background:linear-gradient(var(--navy2),var(--navy));color:var(--white);display:flex;flex-direction:column;align-items:stretch;gap:3px;padding:12px 8px}
+.logo{align-self:center;padding:6px;background:var(--white);border-radius:10px;margin-bottom:8px}
+.nav{display:flex;flex-direction:column;gap:3px}
+.nav button{background:none;border:0;color:var(--white);border-radius:8px;padding:8px 2px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10.5px;line-height:1.25;min-height:54px}
+.nav button.on{background:var(--blue)}.nav button:hover{background:#2456b8}
+.wrap{flex:1;min-width:0;display:flex;flex-direction:column}
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:14px;background:var(--white);border-bottom:1px solid var(--line);padding:10px 20px}
+.brand{font-weight:700;color:var(--navy);margin-right:auto}
+.bar input{flex:0 1 300px;background:var(--bg)}
+.bell{position:relative;background:none;border:0;padding:6px}.bell i{position:absolute;top:0;right:0;background:var(--red);color:var(--white);border-radius:9px;font:600 10px/16px Poppins;min-width:16px;font-style:normal}
+.av{border-radius:50%;background:var(--soft);color:var(--navy2);display:inline-flex;align-items:center;justify-content:center;font-weight:600;width:36px;height:36px;flex:none}
+.av.big{width:84px;height:84px;font-size:26px}
+.who{display:flex;align-items:center;gap:10px}
+main{padding:20px;display:flex;flex-direction:column;gap:16px}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:14px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 2px 10px #0a2a6b0d;display:flex;flex-direction:column;gap:12px;min-width:0}
+.stat{flex-direction:row;align-items:center;justify-content:space-between}.stat b{display:block;font-size:24px}
+.ico{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none}
+.blue{color:var(--blue)}.green{color:var(--green)}.orange{color:var(--orange)}.red{color:var(--red)}
+.bblue{background:var(--soft)}.bgreen{background:var(--greenbg)}.borange{background:var(--orangebg)}.bred{background:var(--redbg)}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{background:var(--soft);color:var(--navy);text-align:left;font-weight:600;white-space:nowrap}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line)}
+td .row{gap:6px;flex-wrap:nowrap}
+.pill{display:inline-block;padding:2px 11px;border-radius:99px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line)}
+.tabs button{border:0;background:none;padding:9px 16px;border-bottom:3px solid transparent;font-weight:500}.tabs button.on{color:var(--blue);border-color:var(--blue);background:var(--soft)}
+.chart{width:100%;height:auto}.chart text{font-size:11px;fill:var(--mut)}
+.legend{display:flex;flex-direction:column;gap:7px}.legend span{display:flex;align-items:center;gap:8px}.legend i{width:11px;height:11px;border-radius:50%}
+.ring{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:22px}
+.doc{max-width:720px;width:100%;margin:0 auto;border:2px solid var(--navy)}
+.doc th,.doc td{border:1px solid #9fb0d0}
+.kv{display:grid;grid-template-columns:130px minmax(0,1fr);gap:7px}
+.stamp{align-self:flex-end;border:4px solid var(--green);color:var(--green);border-radius:10px;padding:2px 24px;font-size:26px;font-weight:700;transform:rotate(-14deg)}
+.alert{border-radius:10px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.note{display:flex;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.note div{flex:1}
+.settings{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}.settings>.card:first-child{flex:1 1 200px;max-width:260px}.settings>.card:last-child{flex:3 1 320px}
+.side2{display:flex;align-items:center;gap:9px;border:0;background:none;padding:9px;border-radius:7px;text-align:left}.side2.on{background:var(--soft);color:var(--blue);font-weight:600}
+.export{align-items:center;text-align:center}
+.veil{position:fixed;inset:0;background:#0a1633a6;display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:40px 16px;z-index:20}
+.modal{width:100%;max-width:600px;background:var(--white);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--navy);color:var(--white);padding:11px 20px;border-radius:9px;z-index:30;width:max-content;max-width:92vw}
+@media(max-width:760px){
+ .app{flex-direction:column}.side{flex:none;flex-direction:row;align-items:center;overflow:hidden}.logo{display:none}
+ .nav{flex-direction:row;overflow-x:auto;flex:1}.nav button{min-width:76px}
+ .bar,main{padding-left:16px;padding-right:16px}.bar input{flex:1 1 100%;order:5}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+(function () {
+const SUB = ['Maths', 'Physics', 'Chemistry'], DEPTS = ['CSE', 'ECE', 'MECH', 'CIVIL'], MONTHS = ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
+const ROLES = { principal: 'Principal', hod: 'HOD', staff: 'Staff', student: 'Student' };
+const NAMES = { principal: 'Dr. S. Meena', hod: 'Dr. R. Karthik', staff: 'Ms. Priya Sharma', student: 'Rahul Kumar' };
+const USERS = { principal: 'principal', hod: 'hod.cse', staff: 'staff.priya', student: 'STU001' };
+const M = {
+ dash: ['Dashboard', 'home'], students: ['Students', 'users'], fees: ['Fees', 'rupee'], history: ['Payments', 'clock'], marks: ['Marks', 'edit'], marksheet: ['Mark Sheet', 'file'], predict: ['Prediction', 'spark'], risk: ['Fee Risk', 'warn'], reports: ['Reports', 'chart'], dept: ['Dept Report', 'pie'], perf: ['Performance', 'trend'], attend: ['Attendance', 'check'], profile: ['Profile', 'user'], notes: ['Notifications', 'bell'], library: ['Library', 'book'], hostel: ['Hostel', 'bed'], transport: ['Transport', 'bus'], export: ['Export', 'down'], settings: ['Settings', 'gear'] };
+const MENUS = {
+ principal: ['dash','students','fees','marks','reports','dept','perf','risk','attend','library','hostel','transport','export','notes','settings'],
+ hod: ['dash','students','fees','marks','perf','risk','attend','reports','dept','export','notes'],
+ staff: ['dash','students','marks','attend','perf','notes'],
+ student: ['dash','fees','history','marksheet','predict','attend','profile','notes'] };
+const P = { home:'M3 11 12 3l9 8M5 10v10h5v-6h4v6h5V10', users:'M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M2 21c0-8 14-8 14 0M17 4a4 4 0 0 1 0 7M18 15c3 .5 4 3 4 6', rupee:'M6 4h12M6 9h12M6 4c9 0 9 10 0 10l9 7', clock:'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18M12 7v5l4 2', edit:'M4 20h4L20 8l-4-4L4 16zM14 6l4 4', file:'M6 3h9l4 4v14H6zM9 12h7M9 16h7', spark:'M12 3l2 7 7 2-7 2-2 7-2-7-7-2 7-2z', warn:'M12 3 2 21h20zM12 10v5M12 18v.5', chart:'M4 20V10M10 20V4M16 20v-7M22 20H2', pie:'M12 3a9 9 0 1 0 9 9h-9z M15 3a7 7 0 0 1 6 6h-6z', trend:'M3 17l6-6 4 4 8-9M15 6h6v6', check:'M4 5h16v16H4zM8 2v5M16 2v5M8 14l3 3 5-6', user:'M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M4 21c0-9 16-9 16 0', bell:'M6 16V10a6 6 0 0 1 12 0v6l2 2H4zM10 21h4', book:'M4 4c4-2 6 0 8 1 2-1 4-3 8-1v15c-4-2-6 0-8 1-2-1-4-3-8-1zM12 5v15', bed:'M3 19V5M3 15h18v4M7 11h5v4M12 9h6a3 3 0 0 1 3 3v3', bus:'M5 4h14v13H5zM5 11h14M8 20v-3M16 20v-3', down:'M12 3v12M7 10l5 5 5-5M4 21h16', gear:'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2', out:'M10 4H4v16h6M14 8l4 4-4 4M8 12h10' };
+const icon = (n, s) => `<svg width="${s || 20}" height="${s || 20}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${P[n]}"/></svg>`;
+const shield = (s) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 5v6c0 5.5 3.800 9.700 9 11 5.200-1.300 9-5.500 9-11V5z" fill="#1766e8"/><path d="M7 7h4v5H7zM13 7h4v5h-4zM7 14h10v2H7z" fill="#fff"/></svg>`;
+function campus() {
+ let win = '';
+ for (let r = 0; r < 4; r++) for (let c = 0; c < 12; c++) { const x = 34 + c * 33; if (c !== 5 && c !== 6) win += `<path d="M${x} ${228 + r * 36}v-17a7 7 0 0 1 14 0v17z" fill="#dcecff" stroke="#f6e7d3" stroke-width="2"/>`; }
+ const tree = (x, y, r) => `<rect x="${x - 4}" y="${y}" width="8" height="${r + 20}" fill="#6b4a2f"/><circle cx="${x}" cy="${y}" r="${r}" fill="#3f7d33"/><circle cx="${x - r * .6}" cy="${y + r * .4}" r="${r * .7}" fill="#4f9440"/><circle cx="${x + r * .6}" cy="${y + r * .3}" r="${r * .7}" fill="#356d2c"/>`;
+ return `<svg viewBox="0 0 440 540" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of the college campus"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a9be8"/><stop offset="1" stop-color="#cfe9ff"/></linearGradient></defs><rect width="440" height="540" fill="url(#sky)"/><g fill="#fff" opacity=".85"><ellipse cx="90" cy="70" rx="55" ry="18"/><ellipse cx="130" cy="58" rx="36" ry="22"/><ellipse cx="350" cy="115" rx="50" ry="15"/></g><rect x="20" y="192" width="400" height="180" fill="#b4533a"/><path d="M12 192 40 165h360l28 27z" fill="#7d3426"/><rect x="170" y="140" width="100" height="232" fill="#c9634a"/><path d="M160 142 220 92l60 50z" fill="#7d3426"/><circle cx="220" cy="125" r="12" fill="#fff"/><path d="M220 118v7h6" stroke="#0a2a6b" stroke-width="2" fill="none"/>${win}<g fill="#dcecff"><path d="M186 215v-30h20v30zM234 215v-30h20v30zM186 265v-30h20v30zM234 265v-30h20v30z"/></g><path d="M195 372v-55a25 25 0 0 1 50 0v55z" fill="#4b2a20"/><rect y="372" width="440" height="168" fill="#6cac45"/><path d="M200 372h40l80 168H120z" fill="#d9d2c3"/>${tree(35, 330, 38)}${tree(405, 322, 42)}${tree(105, 368, 20)}${tree(340, 368, 22)}</svg>`;
+}
+
+function seed() {
+ const raw = [['STU001','Rahul Kumar','CSE',60000,1,[18,67],[17,58],[19,63],92],['STU002','Priya Singh','CSE',85000,0,[19,74],[18,69],[20,70],96],['STU003','Arjun Ravi','CSE',40000,2,[14,50],[13,48],[15,46],72],['STU004','Divya Lakshmi','CSE',85000,0,[17,66],[19,71],[18,68],91],['STU005','Mohamed Irfan','CSE',20000,3,[11,26],[12,35],[14,42],64],['STU006','Sneha Iyer','ECE',85000,0,[18,70],[16,62],[17,60],89],['STU007','Karthik Raja','ECE',55000,1,[15,52],[14,49],[16,55],78],['STU008','Anitha Devi','ECE',70000,0,[16,61],[17,64],[18,66],86],['STU009','Vignesh Kumar','MECH',35000,2,[13,41],[12,38],[15,47],69],['STU010','Fathima Noor','MECH',85000,0,[19,68],[18,63],[17,65],93],['STU011','Suresh Babu','CIVIL',50000,1,[14,46],[15,50],[16,53],76],['STU012','Lavanya Mohan','CIVIL',85000,0,[18,67],[17,60],[19,69],90]];
+ const students = raw.map((r) => ({ id: r[0], name: r[1], dept: r[2], total: 85000, paid: r[3], late: r[4], att: r[8], email: r[1].split(' ')[0].toLowerCase() + '@college.example', phone: '', marks: { Maths: r[5], Physics: r[6], Chemistry: r[7] } }));
+ const payments = [];
+ students.forEach((s, i) => { const parts = [20000]; let left = s.paid - 20000; while (left > 0) { const a = Math.min(left, 25000); parts.push(a); left -= a; } parts.forEach((a, k) => { const m = Math.min(11, 6 + k + (i % 3)); payments.push({ no: 'FEE-2026-' + (101 + payments.length), id: s.id, date: String(3 + i).padStart(2, '0') + '-' + String(m).padStart(2, '0') + '-2026', amount: a, method: ['UPI','Card','Cash','Net banking'][(i + k) % 4] }); }); });
+ const status = {}; DEPTS.forEach((d) => SUB.forEach((x) => { status[d + x] = 'Published'; })); status.CSEPhysics = 'Submitted'; status.CSEChemistry = 'Draft';
+ return { students, payments, status,
+  notices: [{ to: 'all', kind: 'red', title: 'Fee payment due', body: 'Last date is 15-12-2026' }, { to: 'all', kind: 'blue', title: 'New exam results', body: 'Maths results published' }, { to: 'all', kind: 'orange', title: 'System maintenance', body: 'Sunday 10 AM' }, { to: 'hod', kind: 'blue', title: 'Marks waiting for approval', body: 'CSE Physics was submitted' }, { to: 'staff', kind: 'orange', title: 'Enter Chemistry marks', body: 'Submit CSE Chemistry marks to the HOD' }],
+  settings: { college: 'Bright Future University', year: '2026 - 2027', fine: '500', due: '15-12-2026', pass: '50', notify: 'On' },
+  books: [['Data Science','John Doe',5],['Machine Learning','Jane Smith',3],['Python Programming','Alex Brown',8]],
+  rooms: [['Rahul Kumar','B101','A'],['Priya Singh','B102','A'],['','B103','B']],
+  routes: [['City Route','TN-00-AB-1234','Driver A','Active'],['College Route','TN-00-CD-5678','Driver B','Active']] };
+}
+const KEYS = Object.keys(seed()), STORE = 'cms-data-v2';
+let D = seed();
+try { const s = JSON.parse(localStorage.getItem(STORE)); if (s && KEYS.every((k) => s[k]) && Array.isArray(s.students)) D = s; } catch (e) {}
+const U = { logged: false, role: 'principal', page: 'dash', user: 'principal', dept: 'All', q: '', modal: null, form: {}, sel: {}, toast: '', tab: 'Fees', ptab: 'Overview', stab: 'Fee Settings', sub: 'Chemistry', view: '', month: 'Nov' };
+let downloads = null, timer;
+const root = document.getElementById('root');
+
+const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+const money = (n) => '₹' + Number(n).toLocaleString('en-IN');
+const short = (n) => n >= 100000 ? '₹' + (n / 100000).toFixed(2) + 'L' : money(n);
+const sum = (a) => a.reduce((x, y) => x + y, 0), avg = (a) => a.length ? sum(a) / a.length : 0, pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+const stu = (id) => D.students.find((s) => s.id === id);
+const me = () => stu('STU001') || D.students[0];
+const list = () => D.students.filter((s) => U.role === 'principal' ? U.dept === 'All' || s.dept === U.dept : s.dept === 'CSE');
+const found = () => list().filter((s) => (s.name + ' ' + s.id).toLowerCase().includes(U.q.toLowerCase()));
+const letter = (t) => t >= 91 ? 'O' : t >= 81 ? 'A+' : t >= 71 ? 'A' : t >= 61 ? 'B+' : t >= 56 ? 'B' : 'C';
+function grade(m) { if (!m || m[0] === '' || m[1] === '') return null; const t = Number(m[0]) + Number(m[1]), pass = t >= Number(D.settings.pass) && Number(m[1]) >= 28; return { t, pass, g: pass ? letter(t) : 'RA' }; }
+const scores = (s, pub) => SUB.filter((x) => !pub || D.status[s.dept + x] === 'Published').map((x) => grade(s.marks[x])).filter(Boolean);
+const score = (s, pub) => Math.round(avg(scores(s, pub).map((r) => r.t)) * 10) / 10;
+const overall = (s) => { const r = scores(s); return r.length < 3 ? '-' : r.every((x) => x.pass) ? letter(score(s)) : 'RA'; };
+const risk = (s) => s.paid >= s.total ? 0 : Math.min(95, Math.round((s.total - s.paid) / s.total * 60 + s.late * 12));
+const feeState = (s) => s.paid >= s.total ? 'Paid' : s.paid > 0 ? 'Partial' : 'Pending';
+const monthAtt = (att) => MONTHS.map((m, i) => Math.max(0, Math.min(100, att + [-3, 2, -1, 3, -2, 1][i])));
+const monthFees = (ids) => MONTHS.map((m, i) => sum(D.payments.filter((p) => ids.has(p.id) && Number(p.date.slice(3, 5)) === i + 6).map((p) => p.amount)));
+
+const TONE = { Paid: 'green', Published: 'green', Active: 'green', Occupied: 'green', Eligible: 'green', Low: 'green', Pass: 'green', Partial: 'orange', Submitted: 'orange', Medium: 'orange', Vacant: 'orange', Approved: 'blue', Draft: 'blue', Pending: 'red', Returned: 'red', High: 'red', Shortage: 'red', Inactive: 'red', RA: 'red' };
+const pill = (v, t) => { t = t || TONE[v] || 'green'; return `<span class="pill ${t} b${t}">${esc(v)}</span>`; };
+const btn = (label, act, arg, cls) => `<button type="button" class="btn ${cls || ''}" data-act="${act}" data-arg="${esc(arg === undefined ? '' : arg)}">${label}</button>`;
+const card = (title, body, extra) => `<section class="card">${title ? `<div class="head"><h3>${esc(title)}</h3>${extra || ''}</div>` : ''}${body}</section>`;
+const stat = (label, value, tone, ic) => `<section class="card stat"><div><span class="mut">${esc(label)}</span><b class="${tone}">${esc(value)}</b></div><span class="ico ${tone} b${tone}">${icon(ic, 24)}</span></section>`;
+const table = (head, rows) => `<div class="scroll" id="tb-${esc(head.join('-').replace(/\W/g, ''))}"><table><thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.length ? rows.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`).join('') : `<tr><td colspan="${head.length}" class="mut">No records found.</td></tr>`}</tbody></table></div>`;
+const tabs = (key, items) => `<div class="tabs">${items.map((t) => `<button type="button" class="${U[key] === t ? 'on' : ''}" data-act="set" data-arg="${key}:${t}">${t}</button>`).join('')}</div>`;
+const head = (t, right) => `<div class="head"><h2>${esc(t)}</h2><div class="row">${right || ''}</div></div>`;
+const select = (key, opts, value, label) => `<select id="s-${key}" data-set="${key}" aria-label="${label}">${opts.map((o) => `<option ${o === value ? 'selected' : ''}>${o}</option>`).join('')}</select>`;
+const deptSel = () => U.role === 'principal' ? select('dept', ['All'].concat(DEPTS), U.dept, 'Department') : '';
+const search = () => `<input id="q" data-set="q" value="${esc(U.q)}" placeholder="Search by student name or ID" aria-label="Search students">`;
+const initials = (n) => esc(String(n).split(' ').map((w) => w[0]).join('').slice(0, 2));
+function bars(labels, vals, max, fmt) {
+ max = max || Math.max(1, ...vals); const w = 400 / vals.length;
+ return `<svg class="chart" viewBox="0 0 440 210" role="img" aria-label="Bar chart: ${esc(labels.map((l, i) => l + ' ' + vals[i]).join(', '))}">${[0, .5, 1].map((f) => `<line x1="34" x2="434" y1="${175 - f * 150}" y2="${175 - f * 150}" stroke="#e1e8f5"/><text x="30" y="${179 - f * 150}" text-anchor="end">${fmt ? fmt(max * f) : Math.round(max * f)}</text>`).join('')}${vals.map((v, i) => { const h = v / max * 150, x = 34 + i * w; return `<rect x="${x + w * .2}" y="${175 - h}" width="${w * .6}" height="${h}" rx="4" fill="${i % 2 ? '#5b9bf5' : '#1766e8'}"/><text x="${x + w / 2}" y="${169 - h}" text-anchor="middle">${fmt ? fmt(v) : Math.round(v)}</text><text x="${x + w / 2}" y="195" text-anchor="middle">${esc(labels[i])}</text>`; }).join('')}</svg>`;
+}
+function line(labels, vals, fmt) {
+ const max = Math.max(1, ...vals) * 1.15, x = (i) => 46 + i * 370 / Math.max(1, vals.length - 1), y = (v) => 170 - v / max * 145, pts = vals.map((v, i) => x(i) + ',' + y(v)).join(' ');
+ return `<svg class="chart" viewBox="0 0 440 210" role="img" aria-label="Line chart: ${esc(labels.map((l, i) => l + ' ' + vals[i]).join(', '))}">${[0, 1, 2, 3].map((i) => `<line x1="34" x2="430" y1="${170 - i * 45}" y2="${170 - i * 45}" stroke="#e1e8f5"/>`).join('')}<polygon points="${x(0)},170 ${pts} ${x(vals.length - 1)},170" fill="#1766e822"/><polyline points="${pts}" fill="none" stroke="#1766e8" stroke-width="3"/>${vals.map((v, i) => `<circle cx="${x(i)}" cy="${y(v)}" r="4" fill="#1766e8"/><text x="${x(i)}" y="${y(v) - 10}" text-anchor="middle">${fmt ? fmt(v) : Math.round(v)}</text><text x="${x(i)}" y="192" text-anchor="middle">${esc(labels[i])}</text>`).join('')}</svg>`;
+}
+const COL = ['#1766e8', '#14a8ae', '#f29a2e', '#8b98b3', '#e5544b'];
+function donut(parts, center, color, hole) {
+ const t = sum(parts.map((p) => p[1])) || 1; let at = 0;
+ const g = parts.map((p, i) => { const a = at; at += p[1] / t * 100; return `${(color || COL)[i]} ${a}% ${at}%`; }).join(',');
+ return `<div class="ring"><div style="width:150px;height:150px;border-radius:50%;background:conic-gradient(${g});display:flex;align-items:center;justify-content:center" role="img" aria-label="${esc(parts.map((p) => p[0] + ' ' + p[1]).join(', '))}">${hole === false ? '' : `<div style="width:104px;height:104px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700">${esc(center)}</div>`}</div><div class="legend">${parts.map((p, i) => `<span><i style="background:${(color || COL)[i]}"></i>${esc(p[0])}: ${esc(p[2] === undefined ? p[1] : p[2])}</span>`).join('')}</div></div>`;
+}
+const attDonut = (a) => donut([['Present', a, a + '%'], ['Absent', 100 - a, (100 - a) + '%']], a + '%', ['#1fa55b', '#e3ebf8']);
+const notesFor = () => D.notices.filter((n) => n.to === 'all' || n.to === U.role || (U.role === 'student' && n.to === me().id));
+const noteList = (ns) => ns.length ? ns.map((n) => `<div class="note"><span class="ico ${esc(n.kind)} b${esc(n.kind)}">${icon('bell')}</span><div><strong>${esc(n.title)}</strong><br><span class="mut">${esc(n.body)}</span></div></div>`).join('') : '<span class="mut">No notifications.</span>';
+
+function marksheet(s) {
+ const pub = SUB.filter((x) => D.status[s.dept + x] === 'Published'), done = scores(s, true), full = pub.length === 3 && done.length === 3;
+ return `<section class="card doc"><div class="center">${shield(54)}</div><div class="center"><h2>${esc(D.settings.college)}</h2><h3 class="blue">MARK SHEET</h3></div><div class="kv"><span>Student Name</span><strong>${esc(s.name)}</strong><span>Roll Number</span><strong>${esc(s.id)}</strong><span>Course</span><strong>B.E. ${esc(s.dept)}</strong><span>Semester</span><strong>1</strong></div>${table(['Subject','Internal','External','Total','Grade'], SUB.map((x) => { const m = s.marks[x], r = pub.includes(x) && grade(m); return r ? [x, esc(m[0]), esc(m[1]), r.t, pill(r.g, r.pass ? 'green' : 'red')] : [x, '-', '-', '-', pill('Awaiting', 'orange')]; }))}<div class="head"><strong>${full ? `Total: ${sum(done.map((r) => r.t))} / 300 · Percentage: ${score(s, true).toFixed(2)}% · ${done.every((r) => r.pass) ? 'PASS' : 'REAPPEAR'}` : `Final result after all subjects are published (${pub.length} of 3).`}</strong>${btn(icon('down', 16) + 'Download PDF', 'sheetPdf', s.id, 'sm')}</div></section>`;
+}
+function receipt(no) {
+ const p = D.payments.find((x) => x.no === no); if (!p) return '';
+ const s = stu(p.id) || { name: '-' };
+ return `<div class="center">${shield(48)}</div><h2 class="center">COLLEGE FEE RECEIPT</h2><div class="kv"><span>Receipt No</span><strong>${esc(p.no)}</strong><span>Student Name</span><strong>${esc(s.name)}</strong><span>Roll Number</span><strong>${esc(p.id)}</strong><span>Amount Paid</span><strong>${money(p.amount)}</strong><span>Method</span><strong>${esc(p.method)}</strong><span>Date</span><strong>${esc(p.date)}</strong></div><div class="stamp">PAID</div><p>Thank you for your payment. (Sample receipt)</p>${btn(icon('down', 16) + 'Download PDF receipt', 'receiptPdf', p.no)}`;
+}
+const payTable = (ps) => table(['Date','Receipt No','Amount','Method','Receipt'], ps.map((p) => [esc(p.date), esc(p.no), money(p.amount), esc(p.method), `<button type="button" class="link" data-act="receipt" data-arg="${esc(p.no)}">View</button>`]));
+function profile(s) {
+ const own = U.role !== 'staff', t = own ? ['Overview','Fees','Marks','Attendance'] : ['Overview','Marks','Attendance'];
+ if (!t.includes(U.ptab)) U.ptab = 'Overview';
+ const body = U.ptab === 'Fees' ? `<div class="stats">${stat('Total', money(s.total), 'blue', 'rupee')}${stat('Paid', money(s.paid), 'green', 'check')}${stat('Pending', money(s.total - s.paid), 'orange', 'clock')}</div>${payTable(D.payments.filter((p) => p.id === s.id))}` : U.ptab === 'Marks' ? marksheet(s) : U.ptab === 'Attendance' ? attDonut(s.att) : table(['Detail','Value'], [['Email', esc(s.email || '-')], ['Phone', esc(s.phone || '-')], ['Department', esc(s.dept)], ['Semester', '1'], ['Attendance', s.att + '%']]);
+ return card('', `<div class="row"><span class="av big">${initials(s.name)}</span><div><h2>${esc(s.name)}</h2><span class="mut">${esc(s.id)} | B.E. ${esc(s.dept)}</span></div></div>${tabs('ptab', t)}${body}`);
+}
+
+const V = {
+ dash() {
+  const L = list(), tot = sum(L.map((s) => s.total)), paid = sum(L.map((s) => s.paid)), subAvg = SUB.map((x) => avg(L.map((s) => grade(s.marks[x])).filter(Boolean).map((r) => r.t)));
+  if (U.role === 'student') { const s = me(), pub = SUB.filter((x) => D.status[s.dept + x] === 'Published');
+   return `<div class="row"><span class="av">${initials(s.name)}</span><div><h2>Welcome, ${esc(s.name)}</h2><span class="mut">Student ID: ${esc(s.id)}</span></div></div><div class="stats">${stat('Total Fees', money(s.total), 'blue', 'rupee')}${stat('Paid Fees', money(s.paid), 'green', 'check')}${stat('Pending Fees', money(s.total - s.paid), 'orange', 'clock')}</div><div class="grid">${card('Your Marks Overview', bars(pub, pub.map((x) => (grade(s.marks[x]) || { t: 0 }).t), 100))}${card('Attendance', attDonut(s.att))}${card('Recent Activities', noteList(notesFor().slice(0, 3)))}</div>`; }
+  if (U.role === 'staff') { const pending = sum(SUB.filter((x) => ['Draft','Returned'].includes(D.status['CSE' + x])).map(() => L.length));
+   return `<div class="row"><span class="av">PS</span><div><h2>Welcome, Ms. Priya Sharma</h2><span class="mut">Teacher, CSE</span></div></div><div class="stats">${stat('My Students', L.length, 'blue', 'users')}${stat('Subjects', SUB.length, 'blue', 'book')}${stat('Pending Marks', pending, 'orange', 'edit')}</div><div class="grid">${card('Class Performance', bars(L.map((s) => s.name.split(' ')[0]), L.map((s) => score(s)), 100))}${card('Quick Actions', [['marks','edit','Enter Marks'],['perf','chart','View Reports'],['students','users','My Classes']].map((a) => btn(icon(a[1], 17) + a[2], 'go', a[0], 'soft')).join(''))}${card('Recent Activities', noteList(notesFor().slice(0, 3)))}</div>`; }
+  const grades = ['O','A+','A','B+','B','C','RA'].map((g) => [g, L.filter((s) => overall(s) === g).length]).filter((g) => g[1]);
+  return head('Dashboard', `<span class="mut">Academic year ${esc(D.settings.year)}</span>`) + `<div class="stats">${stat('Total Students', L.length, 'blue', 'users')}${stat('Departments', U.role === 'hod' ? 1 : DEPTS.length, 'blue', 'book')}${stat('Fees Collected', short(paid), 'green', 'rupee')}${stat('Pending Fees', short(tot - paid), 'orange', 'clock')}</div><div class="grid">${card('Fee Collection Overview', donut([['Collected', paid, short(paid)], ['Pending', tot - paid, short(tot - paid)]], pct(paid, tot) + '%', ['#1766e8', '#f29a2e']))}${card('Exam Overview', donut(grades.map((g) => ['Grade ' + g[0], g[1]]), pct(L.filter((s) => scores(s).every((r) => r.pass)).length, L.length) + '%', ['#1766e8','#14a8ae','#1fa55b','#f29a2e','#8b98b3','#7a5bd0','#e5544b']) + '<span class="mut center">Centre value: pass rate</span>')}${card('Recent Admissions', L.slice(-4).reverse().map((s) => `<div class="note"><span class="av">${initials(s.name)}</span><div><strong>${esc(s.name)}</strong><br><span class="mut">${esc(s.dept)} · ${esc(s.id)}</span></div></div>`).join(''))}</div><div class="grid">${card('Recent Exam Results', table(['Student','Average','Grade'], L.slice(0, 5).map((s) => [esc(s.name), score(s) + '%', pill(overall(s), overall(s) === 'RA' ? 'red' : 'green')])))}${card('Subject Average', bars(SUB, subAvg, 100))}${card('Quick Actions', [['students','users','Manage Students'],['fees','rupee','Manage Fees'],['marks','edit', U.role === 'hod' ? 'Approve Marks' : 'Publish Results'],['reports','chart','View Reports']].map((a) => btn(icon(a[1], 17) + a[2], 'go', a[0], 'soft')).join(''))}</div>`;
+ },
+ students() {
+  const adm = U.role === 'principal', ids = Object.keys(U.sel).filter((i) => U.sel[i] && stu(i));
+  const rows = found().map((s) => (adm ? [`<input type="checkbox" id="x-${esc(s.id)}" data-check="${esc(s.id)}" ${U.sel[s.id] ? 'checked' : ''} aria-label="Select ${esc(s.name)}" style="width:18px;height:18px">`] : []).concat([esc(s.id), esc(s.name), esc(s.dept), s.att + '%', btn('View', 'view', s.id, 'sm')]));
+  return head(U.role === 'staff' ? 'My Classes' : 'Students', adm ? btn('+ Add Student', 'addStudent') : '') + card('', `<div class="row">${search()}${deptSel()}</div>${table((adm ? ['Select'] : []).concat(['Student ID','Name','Department','Attendance','Action']), rows)}`) + (adm ? card('Bulk Actions', `<div class="row">${btn('Select all shown', 'selectAll', '', 'ghost')}${btn('Send Reminder', 'remindSel')}${btn('Export Report', 'export', 'fees', 'teal')}${btn(U.confirm ? 'Click again to delete ' + ids.length : 'Delete Selected', 'delSel', '', 'red')}</div><strong class="blue">Selected: ${ids.length}</strong>`) : '');
+ },
+ view() { const s = stu(U.view) || me(); return head('Student Profile', btn('Close', 'go', 'students', 'ghost')) + profile(s); },
+ profile() { return head('Student Profile') + profile(me()); },
+ fees() {
+  if (U.role === 'student') { const s = me(), due = s.total - s.paid;
+   return head('Fees', due ? btn('Pay Now', 'pay', s.id) : '') + `<div class="stats">${stat('Total Fees', money(s.total), 'blue', 'rupee')}${stat('Paid Fees', money(s.paid), 'green', 'check')}${stat('Pending Fees', money(due), 'orange', 'clock')}</div>` + card('Due date: ' + D.settings.due, `<p>${due ? `Late fine after the due date: ₹${esc(D.settings.fine)}. This demo takes no real money.` : 'All fees are paid.'}</p>`) + card('Payments', payTable(D.payments.filter((p) => p.id === s.id))); }
+  const L = list();
+  return head('Fees Management', (U.role === 'principal' ? btn('+ Add Payment', 'pay', '') : '') + btn('Remind all pending', 'remindAll', '', 'soft')) + card('', `<div class="row">${search()}${deptSel()}</div>${table(['Student ID','Name','Total Fees','Paid','Pending','Status','Action'], found().map((s) => [esc(s.id), esc(s.name), money(s.total), money(s.paid), money(s.total - s.paid), pill(feeState(s)), `<div class="row">${btn('View', 'viewFees', s.id, 'sm')}${s.paid < s.total ? btn('Remind', 'remind', s.id, 'sm soft') : ''}</div>`]))}`) + `<div class="stats">${stat('Total Billed', money(sum(L.map((s) => s.total))), 'blue', 'rupee')}${stat('Collected', money(sum(L.map((s) => s.paid))), 'green', 'check')}${stat('Pending', money(sum(L.map((s) => s.total - s.paid))), 'orange', 'clock')}</div>`;
+ },
+ history() { return head('Payment History') + card('', payTable(D.payments.filter((p) => p.id === me().id).slice().reverse())); },
+ marks() {
+  const dept = U.role === 'principal' ? (U.dept === 'All' ? 'CSE' : U.dept) : 'CSE', L = D.students.filter((s) => s.dept === dept);
+  const flow = SUB.map((x) => { const st = D.status[dept + x]; let a = '';
+   if (U.role === 'staff' && (st === 'Draft' || st === 'Returned')) a = btn('Submit to HOD', 'status', x + ':Submitted', 'sm green');
+   if (U.role === 'hod' && st === 'Submitted') a = btn('Approve', 'status', x + ':Approved', 'sm green') + btn('Return', 'status', x + ':Returned', 'sm red');
+   if (U.role === 'principal' && st === 'Approved') a = btn('Publish', 'status', x + ':Published', 'sm green');
+   return card(x, `<div class="row">${pill(st)}${a}</div>`); }).join('');
+  return head('Marks Management', (U.role === 'principal' ? select('dept', DEPTS, dept, 'Department') : '') + (U.role === 'staff' ? btn('+ Add Marks', 'editMarks', '') : '')) + card('', `<strong>Semester 1 · ${dept}</strong>${table(['Student'].concat(SUB, ['Total %','Grade'], U.role === 'staff' ? ['Action'] : []), L.map((s) => [esc(s.name)].concat(SUB.map((x) => { const r = grade(s.marks[x]); return r ? r.t : '-'; }), [score(s), pill(overall(s), overall(s) === 'RA' ? 'red' : 'green')], U.role === 'staff' ? [btn('Update', 'editMarks', s.id, 'sm')] : [])))}`) + `<div class="stats">${flow}</div><p class="mut">Staff submits, HOD approves, Principal publishes. Internal 20, external 80. Pass: total ${esc(D.settings.pass)} and external 28.</p>`;
+ },
+ marksheet() { return head('Mark Sheet') + marksheet(me()); },
+ predict() {
+  const s = me(), e = Math.round(score(s, true) * .8 + s.att * .2), pub = SUB.filter((x) => D.status[s.dept + x] === 'Published').sort((a, b) => grade(s.marks[b]).t - grade(s.marks[a]).t), t = e >= 75 ? ['High Performance','green'] : e >= 60 ? ['Average Performance','orange'] : ['Needs Support','red'];
+  return head('Performance Prediction') + card('', `<span class="mut">Based on your published marks and attendance</span><div class="alert ${t[1]} b${t[1]}">${icon(t[1] === 'green' ? 'check' : 'warn', 34)}<h2 class="${t[1]}">${t[0]}</h2></div><h2 class="center">Predicted Score: ${Math.max(0, e - 2)} – ${Math.min(100, e + 2)}%</h2><div class="grid"><div><h3>Key Insights</h3><ul><li>Strongest published subject: ${pub[0] || 'none yet'}</li><li>Attendance is ${s.att}% (minimum 75%)</li><li>Published average is ${score(s, true)}%</li></ul></div>${bars(pub.concat('Predicted'), pub.map((x) => grade(s.marks[x]).t).concat(e), 100)}</div><span class="mut">Estimate formula: 80% marks plus 20% attendance.</span>`);
+ },
+ risk() {
+  const L = list().filter((s) => s.paid < s.total).sort((a, b) => risk(b) - risk(a));
+  if (!L.length) return head('Fee Payment Risk Analysis') + card('', 'No pending fees.');
+  const s = L.find((x) => x.id === U.view) || L[0], r = risk(s), t = r >= 50 ? ['High','red'] : r >= 30 ? ['Medium','orange'] : ['Low','green'], a = Math.PI * (1 - r / 100);
+  return head('Fee Payment Risk Analysis', deptSel()) + `<div class="grid">${card('', `<div class="alert ${t[1]} b${t[1]}">${icon('warn', 30)}<h2 class="${t[1]}">${t[0]} Risk Alert</h2><strong>${esc(s.name)} may delay fee payment</strong></div><svg class="chart" viewBox="0 0 240 140" role="img" aria-label="Risk level ${r} percent" style="max-width:340px;margin:auto"><path d="M30 120A90 90 0 0 1 210 120" fill="none" stroke="#e3ebf8" stroke-width="24"/><path d="M30 120A90 90 0 0 1 ${120 - 90 * Math.cos(Math.PI - a)} ${120 - 90 * Math.sin(a)}" fill="none" stroke="${r >= 50 ? '#e5544b' : '#f29a2e'}" stroke-width="24"/><text x="120" y="95" text-anchor="middle">Risk Level</text><text x="120" y="125" text-anchor="middle" style="font-size:28px;font-weight:700;fill:#101b36">${r}%</text></svg><h3>Recommendations</h3><ul><li>Send an early reminder</li><li>Contact the student about ${money(s.total - s.paid)} pending</li></ul>${btn('Send Reminder', 'remind', s.id)}`)}${card('Students by risk', table(['Student','Risk','Level',''], L.map((x) => { const k = risk(x); return [esc(x.name), k + '%', pill(k >= 50 ? 'High' : k >= 30 ? 'Medium' : 'Low'), btn('Show', 'set', 'view:' + x.id, 'sm soft')]; })) + '<span class="mut">Score: pending share (60 points) plus 12 per late payment.</span>')}</div>`;
+ },
+ reports() {
+  const L = list(), ids = new Set(L.map((s) => s.id)), paid = sum(L.map((s) => s.paid)), due = sum(L.map((s) => s.total - s.paid));
+  const body = U.tab === 'Fees' ? `<div class="grid">${card('Monthly Fee Collection', line(MONTHS, monthFees(ids), (v) => '₹' + Math.round(v / 1000) + 'k'))}<div class="legend">${stat('Total Collection', short(paid), 'green', 'rupee')}${stat('Pending Fees', short(due), 'red', 'clock')}</div></div>` : U.tab === 'Marks' ? card('Subject Average', bars(SUB, SUB.map((x) => avg(L.map((s) => grade(s.marks[x])).filter(Boolean).map((r) => r.t))), 100)) : card('Monthly Attendance (%)', line(MONTHS, monthAtt(Math.round(avg(L.map((s) => s.att))))));
+  return head('Reports & Analytics', deptSel()) + tabs('tab', ['Fees','Marks','Attendance']) + body;
+ },
+ dept() {
+  const ds = (U.role === 'hod' ? ['CSE'] : DEPTS).map((d) => { const a = D.students.filter((s) => s.dept === d); return [d, sum(a.map((s) => s.paid)), sum(a.map((s) => s.total))]; });
+  return head('Department-wise Fee Collection') + `<div class="grid">${card('Share of collection', donut(ds.map((d) => [d[0], d[1], short(d[1])]), pct(sum(ds.map((d) => d[1])), sum(ds.map((d) => d[2]))) + '%'))}${card('Collection percentage', bars(ds.map((d) => d[0]), ds.map((d) => pct(d[1], d[2])), 100))}</div>` + card('', table(['Department','Billed','Collected','Pending'], ds.map((d) => [d[0], money(d[2]), money(d[1]), money(d[2] - d[1])])));
+ },
+ perf() {
+  const L = list(), bands = [['Excellent (80+)', 80, 101], ['Good (65-79)', 65, 80], ['Average (50-64)', 50, 65], ['Below 50', 0, 50]].map((b) => [b[0], L.filter((s) => score(s) >= b[1] && score(s) < b[2]).length]), m = avg(L.map((s) => score(s)));
+  return head('Student Performance Analysis', deptSel()) + `<div class="grid">${card('Performance Bands', donut(bands, '', null, false))}${card('Performance Trend (sample test averages)', line(['Test 1','Test 2','Test 3','Model','Semester'], [-8, -5, -4, -2, 0].map((d) => Math.round(m + d))))}</div>` + card('Class ranking', table(['Rank','Student','Average','Attendance'], L.slice().sort((a, b) => score(b) - score(a)).map((s, i) => [i + 1, esc(s.name), score(s) + '%', s.att + '%'])));
+ },
+ attend() {
+  const L = U.role === 'student' ? [me()] : list(), a = monthAtt(Math.round(avg(L.map((s) => s.att)))), v = a[MONTHS.indexOf(U.month)], present = Math.round(22 * v / 100);
+  return head('Attendance Report', deptSel() && U.role !== 'student' ? deptSel() : '') + `<div class="grid">${card('Month: ' + U.month + ' 2026', donut([['Present days', present], ['Absent days', 22 - present]], v + '%', ['#1766e8', '#e3ebf8']) + '<span class="mut center">22 working days (sample)</span>', select('month', MONTHS, U.month, 'Month'))}${card('Monthly attendance (%)', bars(MONTHS, a, 100))}</div>` + (U.role === 'student' ? '' : card('Overall attendance', table(['Student ID','Name','Attendance','Status'].concat(U.role === 'staff' ? ['Update'] : []), L.map((s) => [esc(s.id), esc(s.name), s.att + '%', pill(s.att >= 75 ? 'Eligible' : 'Shortage')].concat(U.role === 'staff' ? [`<div class="row">${btn('−1', 'att', s.id + ':-1', 'sm ghost')}${btn('+1', 'att', s.id + ':1', 'sm ghost')}</div>`] : [])))));
+ },
+ notes() { return head('Notifications') + card('', noteList(notesFor())); },
+ library() { const q = U.q.toLowerCase(); return head('Library Management') + card('', `<input id="q" data-set="q" value="${esc(U.q)}" placeholder="Search books" aria-label="Search books">` + table(['Book Title','Author','Available','Action'], D.books.map((b, i) => [b, i]).filter((x) => x[0][0].toLowerCase().includes(q)).map(([b, i]) => [esc(b[0]), esc(b[1]), b[2], `<div class="row">${b[2] > 0 ? btn('Issue', 'book', i + ':-1', 'sm') : pill('Out of stock', 'red')}${btn('Return', 'book', i + ':1', 'sm soft')}</div>`]))); },
+ hostel() { return head('Hostel Management', btn('+ Add Room', 'addRoom')) + card('', table(['Student','Room No.','Block','Status','Action'], D.rooms.map((r, i) => [esc(r[0] || '-'), esc(r[1]), esc(r[2]), pill(r[0] ? 'Occupied' : 'Vacant'), r[0] ? btn('Vacate', 'vacate', i, 'sm soft') : btn('Allot', 'allot', i, 'sm')]))); },
+ transport() { return head('Transport Management') + card('', table(['Route','Vehicle','Driver','Status','Action'], D.routes.map((r, i) => [esc(r[0]), esc(r[1]), esc(r[2]), pill(r[3]), btn(r[3] === 'Active' ? 'Pause' : 'Activate', 'route', i, 'sm soft')]))); },
+ export() { return head('Export Reports', deptSel()) + `<div class="stats">${[['fees','Download Fee Report','Excel (CSV)','green'],['sheets','Download Mark Sheets','PDF','blue'],['analytics','Download Analytics','PDF','red'],['marks','Download Marks Report','Excel (CSV)','green']].map((x) => `<section class="card export"><span class="ico ${x[3]} b${x[3]}">${icon('file', 26)}</span><h3>${x[1]}</h3><span class="mut">${x[2]}</span>${btn(icon('down', 16) + 'Download', 'export', x[0], 'sm')}</section>`).join('')}</div>`; },
+ settings() {
+  const f = (k, l) => `<label>${l}<input id="set-${k}" data-cfg="${k}" value="${esc(D.settings[k])}"></label>`;
+  const body = { 'General Settings': f('college', 'College name') + f('year', 'Academic year'), 'Fee Settings': f('year', 'Academic year') + f('fine', 'Default fine (₹)') + f('due', 'Fee due date'), 'Marks Settings': f('pass', 'Pass mark (total out of 100)'), 'Notification Settings': f('notify', 'Fee reminders (On or Off)'), 'Backup Database': '<p>Download all demo data as a file, or restore the sample data.</p>' + btn('Download Backup', 'export', 'backup') + btn(U.confirm ? 'Click again to reset' : 'Reset to sample data', 'reset', '', 'red') }[U.stab];
+  const items = ['General Settings','Fee Settings','Marks Settings','Notification Settings','Backup Database'];
+  return head('System Settings') + `<div class="settings">${card('', items.map((t) => `<button type="button" class="side2 ${U.stab === t ? 'on' : ''}" data-act="set" data-arg="stab:${t}">${icon('gear', 15)}${t}</button>`).join(''))}${card(U.stab, body + (U.stab === 'Backup Database' ? '' : btn('Save Settings', 'saved')))}</div>`;
+ }
+};
+
+function modal() {
+ const m = U.modal; if (!m) return '';
+ const f = (k, l, type) => `<label>${l}<input id="m-${k}" data-form="${k}" type="${type || 'text'}" value="${esc(U.form[k] === undefined ? '' : U.form[k])}"></label>`;
+ const sel = (k, l, opts) => `<label>${l}<select id="m-${k}" data-form="${k}">${opts.map((o) => `<option value="${esc(o[0])}" ${U.form[k] === o[0] ? 'selected' : ''}>${esc(o[1])}</option>`).join('')}</select></label>`;
+ const actions = (label, act) => `<div class="row" style="justify-content:flex-end">${btn('Cancel', 'close', '', 'ghost')}${btn(label, act)}</div>`;
+ let title = '', body = '';
+ if (m === 'student') { title = 'Add New Student'; body = `<div class="two">${f('name', 'Full Name')}${f('id', 'Roll Number')}${sel('dept', 'Department', DEPTS.map((d) => [d, d]))}${sel('course', 'Course', [['B.E.','B.E.'],['B.Tech','B.Tech']])}${f('email', 'Email', 'email')}${f('phone', 'Phone Number', 'tel')}</div>${actions('Save Student', 'saveStudent')}`; }
+ if (m === 'pay') { title = U.role === 'student' ? 'Pay Fees (demo)' : 'Add Payment'; body = `<div class="two">${U.role === 'student' ? '' : sel('id', 'Student', D.students.filter((s) => s.paid < s.total).map((s) => [s.id, s.name + ' (' + money(s.total - s.paid) + ' due)']))}${f('amount', 'Amount (₹)')}${sel('method', 'Method', ['UPI','Card','Cash','Net banking'].filter((x) => U.role !== 'student' || x !== 'Cash').map((x) => [x, x]))}</div>${actions('Save Payment', 'savePay')}`; }
+ if (m === 'marks') { const s = stu(U.form.id); title = 'Update Marks'; body = sel('id', 'Student', D.students.filter((x) => x.dept === 'CSE').map((x) => [x.id, x.name])) + SUB.map((x) => { const open = ['Draft','Returned'].includes(D.status['CSE' + x]); return open ? `<div class="two">${f(x + '0', x + ' internal (0-20)')}${f(x + '1', x + ' external (0-80)')}</div>` : `<div class="row"><strong>${x}</strong>${esc(s.marks[x].join(' + '))} ${pill(D.status['CSE' + x])}<span class="mut">Locked</span></div>`; }).join('') + actions('Save Marks', 'saveMarks'); }
+ if (m === 'room') { title = 'Add Room'; body = `<div class="two">${f('room', 'Room No.')}${f('block', 'Block')}${f('name', 'Student (blank if vacant)')}</div>${actions('Save Room', 'saveRoom')}`; }
+ if (m === 'receipt') { title = 'Receipt'; body = receipt(U.form.no) + btn('Close', 'close', '', 'ghost'); }
+ return `<div class="veil"><div class="modal" role="dialog" aria-modal="true" aria-label="${title}"><div class="head"><h2>${title}</h2><button type="button" class="link" data-act="close" aria-label="Close">✕</button></div>${body}</div></div>`;
+}
+function login() {
+ return `<div class="login"><div class="lcard"><div class="campus">${campus()}</div><form class="lform" id="loginForm"><div class="center">${shield(60)}</div><h1>${esc(D.settings.college)}</h1><h3 class="center">Login to Your Account</h3><input id="user" data-ui="user" value="${esc(U.user)}" placeholder="Email / Username" aria-label="Email or username"><input id="pass" type="password" placeholder="Password" aria-label="Password"><button type="submit" class="btn">Login</button><button type="button" class="link center" data-act="forgot">Forgot Password?</button><strong>Select Role:</strong><div class="roles">${Object.keys(ROLES).map((r) => `<button type="button" class="btn ${U.role === r ? '' : 'soft'}" aria-pressed="${U.role === r}" data-act="role" data-arg="${r}">${ROLES[r]}</button>`).join('')}</div><span class="mut center">Demo: any password works.</span></form></div></div>`;
+}
+function render() {
+ const a = document.activeElement, id = a && a.id, pos = id && typeof a.selectionStart === 'number' ? a.selectionStart : null;
+ const sc = {}; root.querySelectorAll('.scroll,.nav').forEach((n) => { sc[n.id] = n.scrollLeft; });
+ const veil = root.querySelector('.veil'), vy = veil ? veil.scrollTop : 0, name = NAMES[U.role];
+ root.innerHTML = (!U.logged ? login() : `<div class="app"><aside class="side"><div class="logo">${shield(30)}</div><nav class="nav" id="nav" aria-label="Main menu">${MENUS[U.role].map((p) => `<button type="button" class="${U.page === p ? 'on' : ''}" data-act="go" data-arg="${p}">${icon(M[p][1])}<span>${M[p][0]}</span></button>`).join('')}<button type="button" data-act="logout">${icon('out')}<span>Logout</span></button></nav></aside><div class="wrap"><header class="bar"><span class="brand">${esc(D.settings.college)}</span>${U.role === 'student' ? '' : '<input id="top" data-top placeholder="Search students, then press Enter" aria-label="Search students">'}<button type="button" class="bell" data-act="go" data-arg="notes" aria-label="Notifications">${icon('bell', 22)}<i>${notesFor().length}</i></button><div class="who"><span class="av">${initials(name.replace(/^(Dr|Ms)\. /, ''))}</span><div><strong>${name}</strong><br><span class="mut">${ROLES[U.role]}</span></div></div></header><main>${V[U.page]()}</main></div></div>`) + modal() + (U.toast ? `<div class="toast" role="status">${esc(U.toast)}</div>` : '');
+ for (const k in sc) { const n = document.getElementById(k); if (n) n.scrollLeft = sc[k]; }
+ const v2 = root.querySelector('.veil'); if (v2) v2.scrollTop = vy;
+ const f = id && document.getElementById(id);
+ if (f) { f.focus({ preventScroll: true }); if (pos !== null) try { f.setSelectionRange(pos, pos); } catch (e) {} }
+}
+const save = () => { try { localStorage.setItem(STORE, JSON.stringify(D)); } catch (e) {} };
+function toast(t) { U.toast = t; clearTimeout(timer); timer = setTimeout(() => { U.toast = ''; const n = root.querySelector('.toast'); if (n) n.remove(); }, 3500); }
+const notify = (to, title, body, kind) => D.notices.unshift({ to, title, body, kind: kind || 'blue' });
+function go(p) { U.page = p; U.modal = null; U.q = ''; U.sel = {}; U.ptab = 'Overview'; U.confirm = false; render(); window.scrollTo(0, 0); }
+function open(m, form) { U.modal = m; U.form = form; }
+function marksForm(id) { const s = stu(id), f = { id }; SUB.forEach((x) => { f[x + '0'] = s.marks[x][0]; f[x + '1'] = s.marks[x][1]; }); return f; }
+function remind(ss) { if (D.settings.notify.toLowerCase() === 'off') return toast('Fee reminders are turned off in Settings.'); const due = ss.filter((s) => s.total > s.paid); due.forEach((s) => notify(s.id, 'Fee payment due', money(s.total - s.paid) + ' pending. Pay by ' + D.settings.due + '.', 'red')); toast(due.length ? 'Reminder added for ' + due.length + ' student(s).' : 'No pending fees in this selection.'); }
+
+function pdf(pages) {
+ const clean = (t) => String(t).replace(/₹/g, 'Rs. ').replace(/[^\x20-\x7e]/g, '?').replace(/[\\()]/g, '\\$&');
+ const all = []; pages.forEach((p) => { for (let i = 0; i < p.length; i += 44) all.push(p.slice(i, i + 44)); });
+ const objs = ['<< /Type /Catalog /Pages 2 0 R >>', '', '<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>'], kids = [];
+ all.forEach((p) => { const s = 'BT /F1 12 Tf 50 790 Td 17 TL ' + p.map((l) => '(' + clean(l) + ') Tj T*').join(' ') + ' ET'; objs.push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents ${objs.length + 2} 0 R >>`); kids.push(objs.length + ' 0 R'); objs.push(`<< /Length ${s.length} >>\nstream\n${s}\nendstream`); });
+ objs[1] = `<< /Type /Pages /Kids [${kids.join(' ')}] /Count ${kids.length} >>`;
+ let out = '%PDF-1.4\n'; const at = objs.map((o, i) => { const n = out.length; out += `${i + 1} 0 obj\n${o}\nendobj\n`; return n; });
+ const x = out.length; out += `xref\n0 ${objs.length + 1}\n0000000000 65535 f \n${at.map((n) => String(n).padStart(10, '0') + ' 00000 n \n').join('')}trailer\n<< /Size ${objs.length + 1} /Root 1 0 R >>\nstartxref\n${x}\n%%EOF`;
+ return out;
+}
+const sheetLines = (s) => [D.settings.college, 'MARK SHEET - Semester 1', '', 'Name: ' + s.name, 'Roll number: ' + s.id, 'Course: B.E. ' + s.dept, '', 'Subject     Internal  External  Total  Grade'].concat(SUB.map((x) => { const r = D.status[s.dept + x] === 'Published' && grade(s.marks[x]); return x.padEnd(12) + (r ? String(s.marks[x][0]).padEnd(10) + String(s.marks[x][1]).padEnd(10) + String(r.t).padEnd(7) + r.g : 'Awaiting publication'); }), ['', 'Sample document']);
+function csv(rows) { return rows.map((r) => r.map((v) => { let q = String(v); if (/^[=+\-@\t\r]/.test(q)) q = "'" + q; return /[",\n]/.test(q) ? '"' + q.replace(/"/g, '""') + '"' : q; }).join(',')).join('\n'); }
+function file(filename, data) {
+ const fail = () => { toast('Download did not complete.'); render(); };
+ if (downloads) return downloads.save({ filename, data }).catch(fail);
+ if (window.claude) { toast('Downloads are not available in this view.'); return render(); }
+ const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([data])); a.download = filename; a.click();
+}
+
+const A = {
+ role(r) { U.role = r; U.user = USERS[r]; },
+ forgot() { toast('Demo login: any password works.'); },
+ logout() { U.logged = false; U.modal = null; U.toast = ''; },
+ go(p) { go(p); },
+ set(a) { const i = a.indexOf(':'); U[a.slice(0, i)] = a.slice(i + 1); U.confirm = false; },
+ close() { U.modal = null; },
+ view(id) { U.view = id; go('view'); },
+ viewFees(id) { U.view = id; go('view'); U.ptab = 'Fees'; },
+ receipt(no) { open('receipt', { no }); },
+ addStudent() { open('student', { name: '', id: '', dept: 'CSE', course: 'B.E.', email: '', phone: '' }); },
+ saveStudent() { const f = U.form, id = f.id.trim().toUpperCase(); if (!f.name.trim() || !/^[A-Z0-9]+$/.test(id)) return toast('Enter a name and a roll number using letters and digits.'); if (stu(id)) return toast('That roll number already exists.'); const marks = {}; SUB.forEach((x) => { marks[x] = ['', '']; }); D.students.push({ id, name: f.name.trim(), dept: f.dept, email: f.email, phone: f.phone, total: 85000, paid: 0, late: 0, att: 100, marks }); U.modal = null; save(); toast('Student ' + id + ' added.'); },
+ selectAll() { found().forEach((s) => { U.sel[s.id] = true; }); U.confirm = false; },
+ remindSel() { remind(D.students.filter((s) => U.sel[s.id])); save(); },
+ remindAll() { remind(list()); save(); },
+ remind(id) { remind([stu(id)]); save(); },
+ delSel() { const n = D.students.filter((s) => U.sel[s.id]).length; if (!n) return toast('Select students first.'); if (!U.confirm) { U.confirm = true; return; } D.students = D.students.filter((s) => !U.sel[s.id] || s.id === 'STU001'); U.sel = {}; U.confirm = false; save(); toast('Selected students deleted. The demo login student is kept.'); },
+ pay(id) { const s = id ? stu(id) : D.students.find((x) => x.paid < x.total); if (!s) return toast('No pending fees.'); open('pay', { id: s.id, amount: '', method: 'UPI' }); },
+ savePay() { const f = U.form, s = stu(f.id), n = Number(f.amount); if (!Number.isInteger(n) || n < 1 || n > s.total - s.paid) return toast('Enter an amount from ₹1 to ' + money(s.total - s.paid) + '.'); const no = 'FEE-2026-' + (101 + D.payments.length); s.paid += n; D.payments.push({ no, id: s.id, date: '26-11-2026', amount: n, method: f.method }); save(); open('receipt', { no }); toast('Payment recorded.'); },
+ editMarks(id) { open('marks', marksForm(id || D.students.find((s) => s.dept === 'CSE').id)); },
+ saveMarks() { const s = stu(U.form.id), next = {}; for (const x of SUB) { if (!['Draft','Returned'].includes(D.status['CSE' + x])) continue; const m = [0, 1].map((i) => String(U.form[x + i]).trim()); for (let i = 0; i < 2; i++) { const max = i ? 80 : 20; if (m[i] !== '' && !(/^\d+$/.test(m[i]) && Number(m[i]) <= max)) return toast(x + ': enter a whole number from 0 to ' + max + '.'); } next[x] = m.map((v) => v === '' ? '' : Number(v)); } if (!Object.keys(next).length) return toast('All subjects are locked.'); Object.assign(s.marks, next); U.modal = null; save(); toast('Marks saved for ' + s.name + '.'); },
+ status(a) { const [x, v] = a.split(':'), dept = U.role === 'principal' && U.dept !== 'All' ? U.dept : 'CSE'; if (v === 'Submitted' && D.students.some((s) => s.dept === dept && !grade(s.marks[x]))) return toast('Enter every ' + x + ' mark before submitting.'); D.status[dept + x] = v; notify({ Submitted: 'hod', Approved: 'principal', Returned: 'staff', Published: 'all' }[v], dept + ' ' + x + ' marks', v); save(); toast(x + ' marks: ' + v + '.'); },
+ att(a) { const [id, d] = a.split(':'), s = stu(id); s.att = Math.max(0, Math.min(100, s.att + Number(d))); save(); },
+ book(a) { const [i, d] = a.split(':').map(Number); D.books[i][2] = Math.max(0, D.books[i][2] + d); save(); toast(d < 0 ? 'Book issued.' : 'Book returned.'); },
+ addRoom() { open('room', { room: '', block: 'A', name: '' }); },
+ allot(i) { const r = D.rooms[i]; open('room', { room: r[1], block: r[2], name: '', index: Number(i) }); },
+ saveRoom() { const f = U.form; if (!f.room.trim()) return toast('Enter the room number.'); const row = [f.name.trim(), f.room.trim(), f.block.trim()]; if (f.index === undefined) D.rooms.push(row); else D.rooms[f.index] = row; U.modal = null; save(); toast('Room saved.'); },
+ vacate(i) { D.rooms[i][0] = ''; save(); },
+ route(i) { D.routes[i][3] = D.routes[i][3] === 'Active' ? 'Inactive' : 'Active'; save(); },
+ saved() { save(); toast('Settings saved.'); },
+ reset() { if (!U.confirm) { U.confirm = true; return; } D = seed(); U.confirm = false; save(); toast('Sample data restored.'); },
+ sheetPdf(id) { file('mark-sheet-' + id + '.pdf', pdf([sheetLines(stu(id))])); },
+ receiptPdf(no) { const p = D.payments.find((x) => x.no === no), s = stu(p.id); file(no + '.pdf', pdf([[D.settings.college, 'COLLEGE FEE RECEIPT', '', 'Receipt no: ' + p.no, 'Student: ' + (s ? s.name : '-') + ' (' + p.id + ')', 'Amount paid: ' + money(p.amount), 'Method: ' + p.method, 'Date: ' + p.date, 'Status: PAID', '', 'Sample receipt']])); },
+ export(kind) { const L = list();
+  if (kind === 'fees') return file('fee-report.csv', csv([['Student ID','Name','Department','Total','Paid','Pending']].concat(L.map((s) => [s.id, s.name, s.dept, s.total, s.paid, s.total - s.paid]))));
+  if (kind === 'marks') return file('marks-report.csv', csv([['Student ID','Name'].concat(SUB, ['Average'])].concat(L.map((s) => [s.id, s.name].concat(SUB.map((x) => { const r = grade(s.marks[x]); return r ? r.t : ''; }), [score(s)])))));
+  if (kind === 'sheets') return file('mark-sheets.pdf', pdf(L.map(sheetLines)));
+  if (kind === 'backup') return file('college-backup.json', JSON.stringify(D, null, 1));
+  file('analytics.pdf', pdf([[D.settings.college, 'ANALYTICS SUMMARY', '', 'Students: ' + L.length, 'Collected: ' + money(sum(L.map((s) => s.paid))), 'Pending: ' + money(sum(L.map((s) => s.total - s.paid))), 'Average marks: ' + avg(L.map((s) => score(s))).toFixed(1) + '%', 'Average attendance: ' + avg(L.map((s) => s.att)).toFixed(1) + '%']])); }
+};
+root.addEventListener('click', (e) => { const b = e.target.closest('[data-act]'); if (!b) return; A[b.dataset.act](b.dataset.arg); render(); });
+root.addEventListener('submit', (e) => { e.preventDefault(); U.logged = true; U.dept = 'All'; U.toast = ''; go('dash'); });
+root.addEventListener('input', (e) => { const d = e.target.dataset, v = e.target.value; if (d.set === 'q') { U.q = v; render(); } else if (d.form) U.form[d.form] = v; else if (d.cfg) D.settings[d.cfg] = v; else if (d.ui) U[d.ui] = v; });
+root.addEventListener('change', (e) => { const d = e.target.dataset; if (d.set && d.set !== 'q') { U[d.set] = e.target.value; render(); } else if (d.check) { U.sel[d.check] = e.target.checked; U.confirm = false; render(); } else if (U.modal === 'marks' && d.form === 'id') { U.form = marksForm(e.target.value); render(); } else if (d.cfg) save(); });
+root.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.dataset.top !== undefined) { const q = e.target.value; go('students'); U.q = q; render(); } if (e.key === 'Escape' && U.modal) { U.modal = null; render(); } });
+render();
+if (window.claude && window.claude.use) window.claude.use('downloads').then((d) => { downloads = d; });
+})();
+</script>
+</body>
+</html>
